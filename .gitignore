@@ -1,0 +1,15 @@
+.env
+docset/
+jsdoc/
+node_modules/
+# SQL Server backup files
+*.bak
+.idea/
+*.iml
+*.ipr
+.DS_Store
+.nyc_output
+backups
+bashrc
+.vscode/
+

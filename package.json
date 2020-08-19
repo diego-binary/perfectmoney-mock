@@ -1,0 +1,17 @@
+{
+  "name": "perfectmoney",
+  "version": "1.0.0",
+  "description": "Perfect Money mock service ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mock"
+  ],
+  "author": "Diego Ramírez",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.0"
+  }
+}

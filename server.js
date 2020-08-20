@@ -14,6 +14,10 @@ const init = async () => {
     path: "/acct/historycsv.asp",
     handler: (request, h) => {
       const stream = fs.createReadStream("./dummy.csv");
+      console.log(`path ${JSON.stringify(request.path)}`);
+      console.log(`headers ${JSON.stringify(request.headers)}`);
+      console.log(`query ${JSON.stringify(request.query)}`);
+      console.log(`params ${JSON.stringify(request.params)}`);
       // const streamData = Buffer.from(stream);
       //   let streamData = new Readable().wrap(stream);
       return h.response(stream).header("Content-Type", "application/csv");

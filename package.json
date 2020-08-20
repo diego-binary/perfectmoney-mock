@@ -12,6 +12,7 @@
   "author": "Diego Ramírez",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^20.0.0"
+    "@hapi/hapi": "^20.0.0",
+    "nodemon": "^2.0.4"
   }
 }

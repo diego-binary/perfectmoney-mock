@@ -6,7 +6,7 @@ const Hapi = require("@hapi/hapi");
 const init = async () => {
   const server = Hapi.server({
     port: 8080,
-    host: "localhost"
+    host: "0.0.0.0"
   });
 
   server.route({
@@ -25,41 +25,32 @@ const init = async () => {
   });
 
   server.route({
-    method: "POST",
-    path: "/acct/confirm.asp",
-    handler: async request => {
-      const {
-        AccountID,
-        PassPhrase,
-        Payer_Account,
-        Payee_Account,
-        Amount,
-        Memo,
-        PAYMENT_ID,
-        code,
-        Period
-      } = request.payload;
+    method: "GET",
+    path: "/acct/balance.asp",
+    handler: (request, h) => {
+      const stream = fs.createReadStream("./balance-response.html");
 
-      return {
-        Payee_Account_Name: "John Doe",
-        Payer_Account,
-        Payee_Account,
-        PAYMENT_AMOUNT: Amount,
-        PAYMENT_BATCH_NUM: -1,
-        PAYMENT_ID,
-        code,
-        Period
-      };
+      return h
+        .response(stream)
+        .header("Content-Type", "text/html; charset=UTF-8");
     }
   });
 
+  server.events.on("start", function() {
+    server
+      .table()
+      .forEach(route =>
+        console.log(`${route.method.toUpperCase()}\t${route.path}`)
+      );
+  });
+
   await server.start();
+
   console.log("Server running on %s", server.info.uri);
 };
 
 process.on("unhandledRejection", err => {
   console.log(err);
-  //process.exit(1);
 });
 
 init();
